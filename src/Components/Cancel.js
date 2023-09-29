@@ -1,9 +1,10 @@
 
-function Edit({ callback })
+
+function Cancel({ callback })
 {
     return <button type="button" className="btn btn-outline-secondary btn-sm" onClick={callback}>
-        <i className={'bi bi-pencil'}></i>
+        <i className={'bi bi-box-arrow-left'}></i>
     </button>;
 }
 
-export default Edit;
+export default Cancel;
