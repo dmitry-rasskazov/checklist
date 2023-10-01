@@ -2,7 +2,7 @@ import Save from "./Save";
 import Edit from "./Edit";
 import Delete from "./Delete";
 import Cancel from "./Cancel";
-import {useState} from "react";
+import { useState } from "react";
 
 const COMPLETE_MESSAGE = <span className={'text-secondary'}>Выполнено</span>;
 
@@ -11,6 +11,12 @@ function ListItem({ itemInfo, deleteItem, changeItem })
     const [item, setItem] = useState(itemInfo);
     const [text, setText] = useState(item.text);
 
+    function flushChanges(editedItem)
+    {
+        setItem(editedItem);
+        changeItem(editedItem);
+    }
+
     function onCheck()
     {
         let copyItem = {};
@@ -18,7 +24,7 @@ function ListItem({ itemInfo, deleteItem, changeItem })
 
         copyItem.checked = true;
 
-        setItem(copyItem);
+        flushChanges(copyItem);
     }
 
     function onUncheck()
@@ -28,7 +34,7 @@ function ListItem({ itemInfo, deleteItem, changeItem })
 
         copyItem.checked = false;
 
-        setItem(copyItem);
+        flushChanges(copyItem);
     }
 
     function onSave()
@@ -39,9 +45,7 @@ function ListItem({ itemInfo, deleteItem, changeItem })
         copyItem.text = text;
         copyItem.isEdit = false;
 
-        setItem(copyItem);
-
-        changeItem();
+        flushChanges(copyItem);
     }
 
     function onBack()
@@ -52,7 +56,7 @@ function ListItem({ itemInfo, deleteItem, changeItem })
 
         copyItem.isEdit = false;
 
-        setItem(copyItem);
+        flushChanges(copyItem);
     }
 
     function onEdit()
@@ -62,7 +66,7 @@ function ListItem({ itemInfo, deleteItem, changeItem })
 
         copyItem.isEdit = true;
 
-        setItem(copyItem);
+        flushChanges(copyItem);
     }
 
     function onDelete()
