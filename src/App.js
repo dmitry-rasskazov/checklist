@@ -1,6 +1,12 @@
 import Header from './Components/Header'
 import List from "./Components/List";
 import {useState} from "react";
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
+// Bootstrap icons
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const APPLICATION_NAME = 'Checklist';
 const STORAGE_KEY_NAME = 'checklist-data';
