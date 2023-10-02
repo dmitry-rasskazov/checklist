@@ -15,6 +15,8 @@ function ListItem({ itemInfo, deleteItem, changeItem })
     {
         setItem(editedItem);
         changeItem(editedItem);
+
+        console.log("Items flushed!")
     }
 
     function onCheck()

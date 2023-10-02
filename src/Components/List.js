@@ -15,16 +15,20 @@ function List({ itemsInfoList, onChange })
             isEdit: true
         };
 
-        setItems([...items, newItem]);
+        let copyItems = [...items, newItem];
 
-        onChange(items).then(result => console.log("Storing complete when create!"));
+        setItems(copyItems);
+
+        onChange(copyItems);
     }
 
     function deleteItem(id)
     {
-        setItems([...(items.filter((value) => value.id !== id))]);
+        let copyItems = [...(items.filter((value) => value.id !== id))];
 
-        onChange(items).then(result => console.log("Storing complete when delete!"));
+        setItems(copyItems);
+
+        onChange(copyItems);
     }
 
     function changeItem(changedItem)
@@ -39,7 +43,7 @@ function List({ itemsInfoList, onChange })
 
         setItems(copyItems);
 
-        onChange(items).then(result => console.log("Storing complete when change!"));
+        onChange(copyItems);
     }
 
     const itemSize = 'col-lg-4 col-md-6 col-sm-12';

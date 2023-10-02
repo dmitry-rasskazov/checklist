@@ -1,6 +1,6 @@
 import Header from './Components/Header'
 import List from "./Components/List";
-import {useState} from "react";
+import { useEffect, useState } from "react";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
@@ -11,23 +11,27 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const APPLICATION_NAME = 'Checklist';
 const STORAGE_KEY_NAME = 'checklist-data';
 
-async function storeData(value)
+function storeData(value)
 {
+    localStorage.setItem(STORAGE_KEY_NAME, JSON.stringify(value))
 
+    console.log("Checklist data stored");
 }
 
-async function readData()
+function readData()
 {
-  return [];
+    console.log("Reading data");
+
+    const storedData = localStorage.getItem(STORAGE_KEY_NAME);
+    return null === storedData ? [] : JSON.parse(storedData);
 }
 
 function App()
 {
-  const [items, setItems] = useState([]);
-
-  readData().then(result => setItems(result));
-
-  return [<Header key={APPLICATION_NAME+"-Header"} applicationName={APPLICATION_NAME} />, <List key={APPLICATION_NAME+"-List"} itemsInfoList={items} onChange={storeData} />];
+  return [
+      <Header key={APPLICATION_NAME+"-Header"} applicationName={APPLICATION_NAME} />,
+      <List key={APPLICATION_NAME+"-List"} itemsInfoList={readData()} onChange={storeData} />,
+  ];
 }
 
 export default App;
