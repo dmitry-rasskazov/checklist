@@ -3,7 +3,7 @@ import PlusItemButton from './PlusItemButton'
 import { v4 as uuid } from 'uuid';
 import {useState} from "react";
 
-function List({ itemsInfoList, onStore })
+function List({ itemsInfoList, onChange })
 {
     const [items, setItems] = useState(itemsInfoList);
     function createNewItem()
@@ -15,21 +15,35 @@ function List({ itemsInfoList, onStore })
             isEdit: true
         };
 
-        setItems([...items, newItem]);
+        let copyItems = [...items, newItem];
 
-        onStore(items).then(result => console.log("Storing complete when create!"));
+        setItems(copyItems);
+
+        onChange(copyItems);
     }
 
     function deleteItem(id)
     {
-        setItems([...items.filter((value) => value.id !== id)]);
+        let copyItems = [...(items.filter((value) => value.id !== id))];
 
-        onStore(items).then(result => console.log("Storing complete when delete!"));
+        setItems(copyItems);
+
+        onChange(copyItems);
     }
 
-    function changeItem()
+    function changeItem(changedItem)
     {
-        onStore(items).then(result => console.log("Storing complete when change!"));
+        let copyItems = [...items];
+
+        copyItems.forEach((item, index) => {
+            if(item.id === changedItem.id) {
+                copyItems[index] = {...changedItem};
+            }
+        });
+
+        setItems(copyItems);
+
+        onChange(copyItems);
     }
 
     const itemSize = 'col-lg-4 col-md-6 col-sm-12';
@@ -37,7 +51,7 @@ function List({ itemsInfoList, onStore })
     return <div className={'container'}>
         <div className={'row'}>
             {items.map((item) =>
-                <div className={itemSize}>
+                <div key={item.id} className={itemSize}>
                     <ListItem
                         key={item.id}
                         itemInfo={item}
