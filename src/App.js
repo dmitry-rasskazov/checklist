@@ -1,6 +1,5 @@
 import Header from './Components/Header'
-import List from "./Components/List";
-import { useEffect, useState } from "react";
+import List from "./Components/List";g
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
