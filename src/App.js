@@ -1,5 +1,5 @@
 import Header from './Components/Header'
-import List from "./Components/List";g
+import List from "./Components/List";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
