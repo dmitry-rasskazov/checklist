@@ -46,7 +46,7 @@ function List({ itemsInfoList, onChange })
         onChange(copyItems);
     }
 
-    const itemSize = 'col-lg-4 col-md-6 col-sm-12';
+    const itemSize = 'col-lg-4 col-md-6 col-sm-12 p-3';
 
     return <div className={'container'}>
         <div className={'row'}>
